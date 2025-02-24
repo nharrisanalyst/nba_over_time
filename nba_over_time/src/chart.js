@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import { selectAll } from 'd3';
 
 export async function createChart(element_1, element_2){
    const nba_data = await d3.csv('/data/nba_advanced_year.csv',d=>({
@@ -26,7 +27,7 @@ export async function createChart(element_1, element_2){
       avg: d3.mean(d_year, d=>d.off_rating),
       year_date:d_year[0].year_date
  }))
-
+  console.log(agg_stats_off)
  const agg_stats_def = years_groupby_year.map(d_year=>({
     year:d_year[0].year,
     min: d3.min(d_year, d=>d.def_rating),
@@ -39,8 +40,8 @@ export async function createChart(element_1, element_2){
 
 //chart 
 
-const margin ={t:20,r:20,b:20,l:45};
-const height = 500 - (margin.r + margin.l);
+const margin ={t:20,r:20,b:65,l:45};
+const height = 545 - (margin.r + margin.l);
 const width = 928- (margin.t + margin.b);
 const svg_offense = d3.select(element_1).append('svg').attr('height', height + (margin.r + margin.l)).attr('width', width + (margin.l + margin.r));
 
@@ -150,4 +151,29 @@ mainG_deff.append('g').append('path').attr('d', mean_line_deff(agg_stats_def))
 mainG_deff.append('g').append('path').attr('d', mean_line_deff(agg_stats_def))
                                                         .attr('stroke', 'lightgrey').attr('stroke-width', 1.5).attr('fill', 'none').attr('stroke-dasharray', '5 5')
 
+//Leged_1 
+//legend type {text:, dashArray:, fill:}
+
+const legend_off_data =[{text:"Best Team Offense", dashArray:"0", fill:'#1D428A' }, 
+                        {text:"Avg Team Offense",dashArray:"5 5", fill:'lightgrey'}, 
+                        {text:"Worst Team Offense", dashArray:"0", fill:'#C8102E'}];
+
+function legend(selection, data){
+    selection.append('g').attr('class','legend').selectAll().data(data).join('g').attr('transform',(d,i)=>`translate(${i * 135},0)`).each(function(p, j){
+        d3.select(this).append('g').append('line').attr('stroke', p=>p.fill).attr('stroke-width', '1.5')
+                                    .attr('stroke-dasharray', p=>p.dashArray).attr('x1', 0).attr('x2', 25).attr('y1', -2.5).attr('y2', -2.5)
+        d3.select(this).append('g').attr('transform', 'translate(30,0)').attr('fill', 'grey').attr('font-size', '10px').append('text').text(p=>p.text)
+    })
 }
+
+mainG_off.append('g').attr('class','legend').attr('transform', `translate(${-18},${height + 40})`).call(legend,legend_off_data);
+
+const legend_def_data =[{text:"Best Team Defense", dashArray:"0", fill:'#1D428A' }, 
+                        {text:"Avg Team Defense",dashArray:"5 5", fill:'lightgrey'}, 
+                        {text:"Worst Team Defense", dashArray:"0", fill:'#C8102E'}];
+
+mainG_deff.append('g').attr('class','legend').attr('transform', `translate(${-18},${height + 40})`).call(legend,legend_def_data);
+
+}
+
+

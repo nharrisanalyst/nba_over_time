@@ -94,3 +94,77 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+#title{
+  width:1000px;
+  padding-left:25px;
+}
+
+#mainTitle{
+  font-size:48px;
+  text:bold;
+  text-align: left;
+  line-height: 52px;
+  margin-bottom: 16px;
+ 
+}
+
+#subTitle{
+  font-size:16px;
+  color:grey;
+  text:bold;
+  text-align: left;
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+
+#authorTitle{
+  text-align: left;
+  margin-bottom:36px;
+  color:grey;
+}
+
+#me{
+  color:grey;
+  text-decoration: underline;
+}
+
+a{
+  color:grey;
+  text-decoration: underline;
+}
+
+#links{
+  width:1000px;
+  padding-left:25px;
+  text-align: center;
+}
+
+.sm-link{
+  display:inline-block;
+  height:25px;
+  width:25px;
+}
+
+#newsletter-title{
+  line-height: 52px;
+  color:grey;
+}
+
+#tweet-this{
+color:grey;
+margin-left:25px;
+width:25px;
+display: inline-block;
+position:relative; 
+top:-5px
+}
+
+#reddit-this{
+  color:grey;
+  margin-left:25px;
+  
+  display: inline-block;
+  position:relative; 
+  top:-5px
+}
