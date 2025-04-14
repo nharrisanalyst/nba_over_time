@@ -36,7 +36,7 @@ h1 {
 }
 
 #app {
-  max-width: 1280px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -95,9 +95,20 @@ button:focus-visible {
   }
 }
 
+#main-wrapper{
+  display:grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+}
+
+#sub-main-cont{
+  display:grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+}
+
 #title{
-  width:1000px;
-  padding-left:25px;
+  
 }
 
 #mainTitle{
@@ -110,6 +121,15 @@ button:focus-visible {
 }
 
 #subTitle{
+  font-size:16px;
+  color:grey;
+  text:bold;
+  text-align: left;
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+
+.mid-para{
   font-size:16px;
   color:grey;
   text:bold;
@@ -167,4 +187,8 @@ top:-5px
   display: inline-block;
   position:relative; 
   top:-5px
+}
+
+.a-chart-title{
+ margin-top:32px;
 }
